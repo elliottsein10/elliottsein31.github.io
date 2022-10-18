@@ -66,9 +66,23 @@ const vaciarCarrito = () => {
     contenedorCarrito.innerHTML = '';
 }
 
+const eliminarCurso=(e)=>{
+    e.preventDefault();
+    if(e.target.classList.contains("borrar-curso")){
+        let idCurso=e.target.getAttribute("data-id")
+        let carrito=listadoCarrito.filter(cursoInCarrito => cursoInCarrito.id !==idCurso)
+        listadoCarrito=[...carrito]
+        generaHTML();
+    }
+}
+
 const cargarEventListener = () => {
     //Agregar función de carga de cursos al carrito
     listaCursos.addEventListener('click', agregarCurso);
+
+    contenedorCarrito.addEventListener('click', agregarCurso);
+
+    vaciarCarritoBtn.addEventListener("click", vaciarCarrito);
 }
 
 cargarEventListener();
